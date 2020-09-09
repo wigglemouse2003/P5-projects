@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "start": "live-server --port=8080 --host=localhost creations/dnd-board"
+  },
+  "dependencies": {
+    "live-server": "^1.2.1",
+    "node": "^13.13.0",
+    "open": "^7.0.3",
+    "uuid": "^7.0.3"
+  },
+  "name": "phillip-woolf-p5-creations",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "author": "Phillip Woolf",
+  "license": "ISC",
+  "description": "Phillip Woolf's p5.js creations"
+}
