@@ -7,6 +7,7 @@ function Race(type, cellNum) {
   this.speed = 1;
   this.cellNum.speed = this.speed;
   this.active = false;
+  this.spdCounter = this.speed;
 
   this.setRace = function () {
     if (this.type == 0) {
@@ -49,6 +50,9 @@ function Race(type, cellNum) {
   };
 
   this.activate = function () {
+    if (moving) {
+      this.cellNum.speed = this.speed;
+    }
     var availableSpots = [];
     for (let i = 0; i < this.cellNum.spots.length; i++) {
       if (this.cellNum.spots[i]) {
@@ -60,10 +64,17 @@ function Race(type, cellNum) {
     }
   };
 
-  this.move = function (cell) {
+  this.move = function (cell, cellPos) {
+    this.cellNum.getSpots();
     this.pos.x = cell.pos.x;
     this.pos.y = cell.pos.y;
+    this.cellNum.spots = [];
     this.cellNum = cell;
+    if (this.spdCounter != 0) {
+      this.cellNum.speed = this.spdCounter;
+      this.spdCounter -= cellPos;
+    }
+    // this.cellNum.speed = this.speed;
   };
 
   this.show = function (x, y) {

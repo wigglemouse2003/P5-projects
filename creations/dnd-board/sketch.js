@@ -9,7 +9,7 @@ var activeAmnt = [];
 function preload() {}
 
 function setup() {
-  createCanvas(1200, 1200);
+  createCanvas(600, 600);
   imageMode(CENTER);
   rectMode(CENTER);
   cols = floor(width / resolution);
@@ -24,15 +24,15 @@ function setup() {
     coins[i] = new Race(floor(random(11)), floor(random(grid.length)));
     coins[i].setRace();
   }
+
+  for (let i = 0; i < grid.length; i++) {
+    grid[i].getSpots();
+  }
 }
 
 function draw() {
-  background(0);
-  for (let j = 0; j < cols; j++) {
-    for (let i = 0; i < rows; i++) {
-      grid[index(i, j)].show();
-      grid[index(i, j)].getSpots();
-    }
+  for (let i = 0; i < grid.length; i++) {
+    grid[i].show();
   }
   for (let i = 0; i < amnt; i++) {
     coins[i].show(coins[i].pos.x, coins[i].pos.y);
@@ -53,8 +53,8 @@ function mouseClicked() {
     var posCoinY = coins[i].pos.y + resolution / 2;
     var negCoinX = coins[i].pos.x - resolution / 2;
     var negCoinY = coins[i].pos.y - resolution / 2;
-    if (moving && coins[i].active == true) {
-      for (let j = 0; j < coins[i].cellNum.spots.length; j++) {
+    for (let j = 0; j < coins[i].cellNum.spots.length; j++) {
+      if (moving && coins[i].active == true) {
         var posSpotX = coins[i].cellNum.spots[j].pos.x + resolution / 2;
         var posSpotY = coins[i].cellNum.spots[j].pos.y + resolution / 2;
         var negSpotX = coins[i].cellNum.spots[j].pos.x - resolution / 2;
@@ -66,7 +66,11 @@ function mouseClicked() {
           mouseY < posSpotY &&
           mouseY > negSpotY
         ) {
-          coins[i].move(coins[i].cellNum.spots[j]);
+          coins[i].move(
+            coins[i].cellNum.spots[j],
+            coins[i].cellNum.spotsRelPos[j]
+          );
+
           console.log("yes");
         }
       }
@@ -75,18 +79,23 @@ function mouseClicked() {
       mouseX < posCoinX &&
       mouseX > negCoinX &&
       mouseY < posCoinY &&
-      mouseY > negCoinY
+      mouseY > negCoinY &&
+      !moving
     ) {
       coins[i].active = true;
       activeAmnt.push(coins[i]);
       moving = true;
     } else if (moving) {
-      coins[i].active = false;
-      for (let k = 0; k < coins[i].cellNum.spots.length; k++) {
-        if (coins[i].cellNum.spots[k]) {
-          coins[i].cellNum.spots[k].available = false;
-        }
+      for (let l = 0; l < grid.length; l++) {
+        grid[l].available = false;
       }
+    } else {
+      coins[i].spdCounter = coins[i].speed;
+    }
+    if (coins[i].spdCounter == 0) {
+      moving = false;
+      coins[i].active = false;
+      coins[i].spdCounter = coins[i].speed;
     }
   }
 }

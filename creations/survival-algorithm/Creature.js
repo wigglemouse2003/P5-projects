@@ -30,6 +30,7 @@ function Creature(dna) {
         targets[i].x - this.pos.x + 100 / ((d ^ 2) - 1000),
         targets[i].y - this.pos.y + 100 / ((d ^ 2) - 1000)
       );
+
       this.move.setMag(maxforce);
       this.applyForce(this.move);
 
