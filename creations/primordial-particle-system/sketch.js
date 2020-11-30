@@ -4,28 +4,40 @@ var speed = 0.67;
 var rotateAmnt = 180;
 var radius = 5;
 var beta = -17;
-
+var cols, rows;
 var playing = false;
 var pause;
+let resolution = 120;
 
 function setup() {
-  createCanvas(1600, 1600);
+  createCanvas(1200, 1200);
+  cols = floor(width / resolution);
+  rows = floor(height / resolution);
   pause = createButton("Pause");
   pause.size(600, 200);
   pause.style("font-size", 150 + "px");
   pause.position(width, 0);
   pause.mousePressed(Pause);
-  for (let i = 0; i < amnt; i++) {
-    var particle = new Particle(
-      i,
-      random(
-        width // - 500
-      ), // + 250
-      random(
-        height // - 500
-      ) // + 250
-    );
-    particles.push(particle);
+  for (let j = 0; j < cols; j++) {
+    for (let i = 0; i < rows; i++) {
+      // for (let i = 0; i < amnt; i++) {
+      // var particle = new Particle(
+      //   i,
+      //   random(
+      //     width // - 500
+      //   ), // + 250
+      //   random(
+      //     height // - 500
+      //   ) // + 250
+      // );
+      // }
+      var particle = new Particle(
+        index(i, j),
+        i * resolution + resolution / 2,
+        j * resolution + resolution / 2
+      );
+      particles.push(particle);
+    }
   }
 
   for (let i = 0; i < 0; i++) {
@@ -64,4 +76,11 @@ function Pause() {
   } else if (!playing) {
     playing = true;
   }
+}
+
+function index(i, j) {
+  if (i < 0 || j < 0 || i > cols - 1 || j > rows - 1) {
+    return -1;
+  }
+  return i + j * cols;
 }

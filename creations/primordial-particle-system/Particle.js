@@ -2,7 +2,7 @@ function Particle(num, startx, starty) {
   this.pos = createVector(startx, starty);
   this.vel = createVector();
   this.acc = p5.Vector.random2D();
-  // this.acc = createVector(1);
+  // this.acc = createVector(-1);
   this.neighbors = 0;
   this.leftHemisphere = p5.Vector.fromAngle(radians(270), 25 * radius);
   this.rightHemisphere = p5.Vector.fromAngle(radians(90), 25 * radius);
@@ -50,6 +50,8 @@ function Particle(num, startx, starty) {
     this.vel.rotate(
       rotateAmnt + beta * this.neighbors * Math.sign(this.rt - this.lt)
     );
+    // this.vel.rotate(rotateAmnt + beta * this.neighbors * (this.rt - this.lt));
+
     this.vel.add(this.acc);
     this.pos.add(this.vel);
     this.leftHemisphere.set(0, (-25 * radius) / 2);
