@@ -15,7 +15,9 @@ var numval;
 var newnum = 0;
 var num = 0;
 var inputval = 0;
-var frame = 0;
+var frame;
+var going = false;
+var list = [];
 
 function setup() {
   createCanvas(400, 400);
@@ -41,14 +43,14 @@ function setup() {
 function draw() {
   background(0);
   val.html(newnum);
-  Game();
   if (frame % 2 != 0) {
     inputval = numval.value();
   }
-  if (inputval != numval.value()) {
+  if (num != numval.value() && !going) {
     num = numval.value();
     newnum = num;
   }
+  Game();
   frame += 0.5;
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
@@ -73,8 +75,10 @@ function draw() {
 }
 
 function Game() {
-  while (newnum != 1) {
+  going = true;
+  while (newnum != 1 || numval.value() != 0) {
     console.log(newnum);
+    list.push(newnum);
     if (num % 2 == 1) {
       newnum = num * 3 + 1;
     } else if (num % 2 == 0) {
@@ -84,4 +88,10 @@ function Game() {
 
     return newnum;
   }
+}
+
+function mousePressed() {
+  print(numval.value());
+  going = false;
+  newnum = 1;
 }

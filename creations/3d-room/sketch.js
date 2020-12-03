@@ -15,7 +15,7 @@ let wallSecCollisions = [
 var storedPos = [];
 var grav = true;
 var jump = false;
-var number = 10;
+var number = 5;
 
 function preload() {
   img[0] = loadImage("assets/red-bricks-wall-photo-taken-made-101731432.jpg");
@@ -58,8 +58,12 @@ function draw() {
     PI,
     25
   );
-  if (grav) {
-    camera.setPosition(camera.eyeX, camera.eyeY + frameCount / 10, camera.eyeZ);
+  if (grav && !jump) {
+    camera.setPosition(
+      camera.eyeX,
+      camera.eyeY + (frameCount * frameCount) / 1000,
+      camera.eyeZ
+    );
   } else {
     grav = true;
   }
@@ -111,16 +115,18 @@ function draw() {
   // }
   level.collide();
   if (jump) {
-    if (number >= 5) {
+    if (number >= 0) {
       console.log("yes");
       camera.setPosition(camera.eyeX, camera.eyeY - number, camera.eyeZ);
       frameCount = 0;
-      number = number - 1 / number;
+      number -= 0.1;
+      // number = number - 0.0625;
       grav = false;
     }
   }
-  if (number <= 5) {
-    number = 10;
+
+  if (grav) {
+    number = 5;
     jump = false;
   }
 }
@@ -160,5 +166,18 @@ function index(i, j, width) {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth - 5, windowHeight - 5);
+}
+
+function collisionDetect(x, z, w, h) {
+  if (
+    camera.eyeX > x &&
+    camera.eyeX < x + w &&
+    camera.eyeZ > z &&
+    camera.eyeZ < z + h
+  ) {
+    return true;
+  } else {
+    return false;
+  }
 }

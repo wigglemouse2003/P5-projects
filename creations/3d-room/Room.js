@@ -142,7 +142,7 @@ function Room() {
         if (
           floor(camera.eyeX / (10 * (2 ^ w) + 11) - 11) ===
             floor(wallSecCollisions[j][i].x / 10) &&
-          this.walls[j][i] === true
+          rooms[0].walls[j][i] === true
         ) {
           camera.setPosition(storedPos[0], camera.eyeY, camera.eyeZ);
         }
@@ -156,7 +156,7 @@ function Room() {
         if (
           floor(camera.eyeZ / (10 * (2 ^ (l - 2.75)) - 4) + 30) ===
             wallSecCollisions[j][i].z / 10 &&
-          this.walls[j][i] === true
+          rooms[0].walls[j][i] === true
         ) {
           camera.setPosition(camera.eyeX, camera.eyeY, storedPos[2]);
         }

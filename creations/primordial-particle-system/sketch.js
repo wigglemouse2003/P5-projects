@@ -10,13 +10,13 @@ var pause;
 let resolution = 120;
 
 function setup() {
-  createCanvas(1200, 1200);
+  createCanvas(windowWidth - 5, windowHeight - 5);
   cols = floor(width / resolution);
   rows = floor(height / resolution);
   pause = createButton("Pause");
-  pause.size(600, 200);
-  pause.style("font-size", 150 + "px");
-  pause.position(width, 0);
+  // pause.size(600, 200);
+  pause.style("font-size", 50 + "px");
+  pause.position(windowWidth / 2 - width / 8, (3.25 * windowHeight) / 4);
   pause.mousePressed(Pause);
   for (let j = 0; j < cols; j++) {
     for (let i = 0; i < rows; i++) {
@@ -83,4 +83,8 @@ function index(i, j) {
     return -1;
   }
   return i + j * cols;
+}
+function windowResized() {
+  resizeCanvas(windowWidth - 5, windowHeight - 5);
+  pause.position(windowWidth / 2 - width / 8, (3.25 * windowHeight) / 4);
 }
