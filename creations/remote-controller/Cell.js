@@ -45,6 +45,7 @@ function Cell(i, j) {
       noStroke();
       fill(133, 31, 133);
       rect(x, y, w, w);
+      // stroke(0);
       stroke(255);
       strokeWeight(2);
       if (this.walls[0]) {
@@ -60,7 +61,7 @@ function Cell(i, j) {
         line(x, y + w, x, y);
       }
     }
-    if (!this.visited && showgrid.value() == 1) {
+    if (!this.visited && showgrid == 1) {
       stroke(255);
       strokeWeight(1);
       if (this.walls[0]) {

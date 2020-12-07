@@ -1,30 +1,27 @@
 var cols, rows;
-var w = 15;
+var w = 10;
 var grid = [];
-
+var controller;
 var current;
 
 var stack = [];
 
-var slider;
-var showgrid;
-var reset;
-var pause;
-
+var showgrid = 1;
 var playing = true;
 var remoteReset = false;
+var remotePause = false;
+var remoteSlider;
+var remoteShowgrid;
+var fmRt = 10;
 
 function setup() {
-  slider = createSlider(1, 30, 10, 1);
-  showgrid = createSlider(0, 1, 1, 1);
-  reset = createButton("Reset Maze");
-  reset.mousePressed(resetMaze);
-  pause = createButton("Pause");
-  pause.mousePressed(pauseMaze);
-  createCanvas(600, 600);
-  // registerServiceWorker("/addons/service-worker.js");
+  createCanvas(1000, 1000);
+  registerServiceWorker("/addons/service-worker.js");
   cols = floor(width / w);
   rows = floor(height / w);
+
+  var controllerWindow = createButton("Open the Controller");
+  controllerWindow.mousePressed(openWin);
 
   for (var j = 0; j < rows; j++) {
     for (var i = 0; i < cols; i++) {
@@ -36,22 +33,31 @@ function setup() {
   listenMessage(function (incomingData) {
     //the incoming data has 2 keys, client and message
     console.log(incomingData.client, incomingData.message);
-    remoteReset = incomingData.message;
+    if (incomingData.message[0] === 0) {
+      remoteReset = true;
+    } else if (incomingData.message[0] === 1) {
+      remotePause = true;
+    } else if (incomingData.message[0] === 2) {
+      fmRt = incomingData.message[1];
+    } else if (incomingData.message[0] === 3) {
+      showgrid = incomingData.message[1];
+    }
   });
 
   current = grid[0];
 }
 
 function draw() {
-  registerServiceWorker("/addons/service-worker.js");
-  frameRate(slider.value());
+  frameRate(fmRt);
   // console.log(frameRate());
 
   background(51);
   for (var i = 0; i < grid.length; i++) {
     grid[i].show();
   }
-  current.highlight();
+  if (current != grid[0]) {
+    current.highlight();
+  }
   if (playing) {
     current.visited = true;
     var next = current.checkNeighbors();
@@ -73,6 +79,10 @@ function draw() {
   if (remoteReset === true) {
     resetMaze();
     remoteReset = false;
+  }
+  if (remotePause === true) {
+    pauseMaze();
+    remotePause = false;
   }
 }
 
@@ -128,4 +138,19 @@ function removeWalls(a, b) {
 function mouseClicked() {
   //this will only go to the other clients that are connected (not itself).
   sendMessage(random(360));
+}
+
+function openWin() {
+  controller = window.open(
+    "controller/controller.html",
+    "",
+    "width=150, height=175, resizable=no"
+  );
+  resizeWin();
+  // controller.document.write("<p>This is 'myWindow'</p>");
+}
+
+function resizeWin() {
+  // controller.resizeTo(200, 250);
+  controller.focus();
 }
