@@ -15,7 +15,9 @@ function setup() {
   pause = createButton("Pause");
   pause.mousePressed(two);
   slider = createSlider(1, 30, 10, 1);
+  storedValSlider = slider.value();
   showgrid = createSlider(0, 1, 1, 1);
+  storedValShowgrid = showgrid.value();
   hilo = createDiv("");
   hilo.child(reset);
   hilo.child(pause);

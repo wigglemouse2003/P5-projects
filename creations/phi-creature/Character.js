@@ -19,11 +19,7 @@ function Character() {
     fill(50, 0, 150);
     push();
     translate(0, 15);
-    cylinder(5, 30);
-    pop();
-    push();
-    translate(0, -25);
-    cylinder(5, 10);
+    cylinder(5, 90);
     pop();
     push();
     translate(0, -30, 0);

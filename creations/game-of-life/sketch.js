@@ -1,12 +1,10 @@
 function makeGrid(cols, rows) {
-
   var arr = new Array(cols);
   for (let i = 0; i < arr.length; i++) {
     arr[i] = new Array(rows);
   }
   return arr;
 }
-
 
 let grid;
 let cols;
@@ -20,12 +18,12 @@ function setup() {
   cols = floor(width / resolution);
   rows = floor(height / resolution);
   slider = createSlider(1, 60, 45);
-  slider.position(windowWidth / 2 - width / 8, 3.75 * windowHeight / 4)
+  slider.position(windowWidth / 2 - width / 8, (3.75 * windowHeight) / 4);
   sliderval = createP();
   sliderval.position(slider.position().x + 150, slider.position().y - 30);
-  sliderval.style('color', 'rgb(0, 255, 0)');
-  sliderval.style('font-weight', '900');
-  sliderval.style('font-size', '25px');
+  sliderval.style("color", "rgb(0, 255, 0)");
+  sliderval.style("font-weight", "900");
+  sliderval.style("font-size", "25px");
 
   grid = makeGrid(cols, rows);
   for (let i = 0; i < cols; i++) {
@@ -39,7 +37,6 @@ function draw() {
   background(0);
   frameRate(slider.value());
   sliderval.html(slider.value());
-
 
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
@@ -75,16 +72,12 @@ function draw() {
   }
 
   grid = next;
-
-
-
 }
 
 function countNeighbors(grid, x, y) {
   let sum = 0;
   for (let i = -1; i < 2; i++) {
     for (let j = -1; j < 2; j++) {
-
       let col = (x + i + cols) % cols;
       let row = (y + j + rows) % rows;
       sum += grid[col][row];

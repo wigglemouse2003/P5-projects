@@ -16,7 +16,6 @@ var fmRt = 10;
 
 function setup() {
   createCanvas(1000, 1000);
-  registerServiceWorker("/addons/service-worker.js");
   cols = floor(width / w);
   rows = floor(height / w);
 
@@ -45,6 +44,7 @@ function setup() {
   });
 
   current = grid[0];
+  registerServiceWorker("/addons/service-worker.js");
 }
 
 function draw() {
