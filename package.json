@@ -12,7 +12,7 @@
     "start-8": "live-server --port=0008 --host=localhost --no-browser creations/primordial-particle-system",
     "start-9": "live-server --port=0009 --host=localhost --no-browser creations/survival-algorithm",
     "start-10": "live-server --port=0010 --host=localhost --no-browser creations/creature-creator",
-    "start-11": "live-server --port=0010 --host=localhost --no-browser creations/3d-room"
+    "start-11": "live-server --port=0011 --host=localhost --no-browser creations/3d-room"
   },
   "dependencies": {
     "live-server": "^1.2.1",

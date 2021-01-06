@@ -9,20 +9,26 @@ var hilo;
 
 function setup() {
   createCanvas(windowWidth - 20, windowHeight - 20);
-  registerServiceWorker("service-worker.js");
+  registerServiceWorker("/addons/service-worker.js");
   reset = createButton("Reset Maze");
   reset.mousePressed(one);
   pause = createButton("Pause");
   pause.mousePressed(two);
   slider = createSlider(1, 30, 10, 1);
-  storedValSlider = slider.value();
   showgrid = createSlider(0, 1, 1, 1);
-  storedValShowgrid = showgrid.value();
   hilo = createDiv("");
   hilo.child(reset);
   hilo.child(pause);
   hilo.child(slider);
   hilo.child(showgrid);
+  // reset.position(0, (3 * height) / 4 - 100);
+  // pause.position(0, (3 * height) / 4 - 60);
+  // slider.position(0, (3.75 * height) / 4 - 40);
+  // showgrid.position(0, (3.75 * height) / 4 - 10);
+  // reset.center("horizontal");
+  // pause.center("horizontal");
+  // slider.center("horizontal");
+  // showgrid.center("horizontal");
   hilo.center();
   listenMessage(function (incomingData) {
     console.log(incomingData.client, incomingData.message);
@@ -44,7 +50,7 @@ function draw() {
 }
 
 function mouseClicked() {
-  // registerServiceWorker("/addons/service-worker.js");
+  registerServiceWorker("/addons/service-worker.js");
   // sendMessage(random(360));
 }
 

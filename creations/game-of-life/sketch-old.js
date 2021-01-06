@@ -9,17 +9,16 @@ function makeGrid(cols, rows) {
 let grid;
 let cols;
 let rows;
-let resolution = 1;
+let resolution = 1.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001;
 let slider;
 let sliderval;
-let gridPrev = [];
 
 function setup() {
-  createCanvas(634, 223);
+  createCanvas(windowWidth, windowHeight);
   cols = floor(width / resolution);
   rows = floor(height / resolution);
   slider = createSlider(1, 60, 45);
-  slider.position(634 / 2 - 634 / 8, (3.5 * 223) / 4);
+  slider.position(windowWidth / 2 - width / 8, (3.75 * windowHeight) / 4);
   sliderval = createP();
   sliderval.position(slider.position().x + 150, slider.position().y - 30);
   sliderval.style("color", "rgb(0, 255, 0)");
@@ -32,13 +31,9 @@ function setup() {
       grid[i][j] = floor(random(5));
     }
   }
-  for (let i = 0; i < 20; i++) {
-    gridPrev[i] = makeGrid(cols, rows);
-  }
 }
 
 function draw() {
-  colorMode(HSB);
   background(0);
   frameRate(slider.value());
   sliderval.html(slider.value());
@@ -47,13 +42,6 @@ function draw() {
     for (let j = 0; j < rows; j++) {
       let x = i * resolution;
       let y = j * resolution;
-      for (let k = 0; k < gridPrev.length; k++) {
-        if (gridPrev[k][i][j] == 1) {
-          fill(240, 100, Log(k));
-          noStroke();
-          rect(x, y, resolution, resolution);
-        }
-      }
       if (grid[i][j] == 1) {
         fill(255);
         noStroke();
@@ -82,12 +70,7 @@ function draw() {
       }
     }
   }
-  if (frameCount > 10) {
-    for (let i = gridPrev.length - 1; i > 0; i--) {
-      gridPrev[i] = gridPrev[i - 1];
-    }
-    gridPrev[0] = grid;
-  }
+
   grid = next;
 }
 
@@ -102,8 +85,4 @@ function countNeighbors(grid, x, y) {
   }
   sum -= grid[x][y];
   return sum;
-}
-
-function Log(x) {
-  return Math.pow(6 / 8, x * 0.5 + Math.log(100) / Math.log(6 / 8));
 }
