@@ -1,5 +1,3 @@
-var frame = 0;
-
 function setup() {
   createCanvas(400, 400);
   frameRate(20);
@@ -9,82 +7,81 @@ function draw() {
   noStroke();
   background(0);
   rectMode(CENTER);
-  Fill(0 + frame);
+  Fill(0 + frameCount);
 
   rect(width / 2, height / 2, 26, 26);
-  Fill(1 + frame);
+  Fill(1 + frameCount);
 
   rect(width / 2, height / 2 + 25, 26, 26);
-  Fill(2 + frame);
+  Fill(2 + frameCount);
 
   rect(width / 2 + 25, height / 2 + 25, 26, 26);
-  Fill(3 + frame);
+  Fill(3 + frameCount);
 
   rect(width / 2 + 25, height / 2, 26, 26);
-  Fill(4 + frame);
+  Fill(4 + frameCount);
 
   rect(width / 2 + 25, height / 2 - 25, 26, 26);
-  Fill(5 + frame);
+  Fill(5 + frameCount);
 
   rect(width / 2, height / 2 - 25, 26, 26);
-  Fill(6 + frame);
+  Fill(6 + frameCount);
 
   rect(width / 2 - 25, height / 2 - 25, 26, 26);
-  Fill(7 + frame);
+  Fill(7 + frameCount);
 
   rect(width / 2 - 25, height / 2, 26, 26);
-  Fill(8 + frame);
+  Fill(8 + frameCount);
 
   rect(width / 2 - 25, height / 2 + 25, 26, 26);
-  Fill(9 + frame);
+  Fill(9 + frameCount);
 
   rect(width / 2 - 25, height / 2 + 50, 26, 26);
-  Fill(10 + frame);
+  Fill(10 + frameCount);
 
   rect(width / 2, height / 2 + 50, 26, 26);
-  Fill(11 + frame);
+  Fill(11 + frameCount);
 
   rect(width / 2 + 25, height / 2 + 50, 26, 26);
-  Fill(12 + frame);
+  Fill(12 + frameCount);
 
   rect(width / 2 + 50, height / 2 + 50, 26, 26);
-  Fill(13 + frame);
+  Fill(13 + frameCount);
 
   rect(width / 2 + 50, height / 2 + 25, 26, 26);
-  Fill(14 + frame);
+  Fill(14 + frameCount);
 
   rect(width / 2 + 50, height / 2, 26, 26);
-  Fill(15 + frame);
+  Fill(15 + frameCount);
 
   rect(width / 2 + 50, height / 2 - 25, 26, 26);
-  Fill(16 + frame);
+  Fill(16 + frameCount);
 
   rect(width / 2 + 50, height / 2 - 50, 26, 26);
-  Fill(17 + frame);
+  Fill(17 + frameCount);
 
   rect(width / 2 + 25, height / 2 - 50, 26, 26);
-  Fill(18 + frame);
+  Fill(18 + frameCount);
 
   rect(width / 2, height / 2 - 50, 26, 26);
-  Fill(19 + frame);
+  Fill(19 + frameCount);
 
   rect(width / 2 - 25, height / 2 - 50, 26, 26);
-  Fill(20 + frame);
+  Fill(20 + frameCount);
 
   rect(width / 2 - 50, height / 2 - 50, 26, 26);
-  Fill(21 + frame);
+  Fill(21 + frameCount);
 
   rect(width / 2 - 50, height / 2 - 25, 26, 26);
-  Fill(22 + frame);
+  Fill(22 + frameCount);
 
   rect(width / 2 - 50, height / 2, 26, 26);
-  Fill(23 + frame);
+  Fill(23 + frameCount);
 
   rect(width / 2 - 50, height / 2 + 25, 26, 26);
-  Fill(24 + frame);
+  Fill(24 + frameCount);
 
   rect(width / 2 - 50, height / 2 + 50, 26, 26);
-  frame += 1;
 }
 
 function Fill(color) {

@@ -90,14 +90,64 @@ function Particle(num, startx, starty) {
     //   fill(0, 217, 255, 50);
     // ellipse(0, 0, 25 * radius, 25 * radius);
     stroke(51);
-    if (this.neighbors <= 7) {
+    if (this.neighbors == 0) {
       fill(0, 255, 0);
-    } else if (this.neighbors <= 14) {
+    } else if (this.neighbors == 1) {
+      fill(0, 217, 38);
+    } else if (this.neighbors == 2) {
+      fill(0, 217, 38);
+    } else if (this.neighbors == 3) {
+      fill(0, 140, 115);
+    } else if (this.neighbors == 4) {
+      fill(0, 102, 153);
+    } else if (this.neighbors == 5) {
+      fill(0, 64, 191);
+    } else if (this.neighbors == 6) {
+      fill(0, 25, 230);
+    } else if (this.neighbors == 7) {
       fill(0, 0, 255);
-    } else if (this.neighbors <= 21) {
+    } else if (this.neighbors == 8) {
+      fill(26, 0, 255);
+    } else if (this.neighbors == 9) {
+      fill(76, 0, 255);
+    } else if (this.neighbors == 10) {
+      fill(115, 0, 255);
+    } else if (this.neighbors == 11) {
+      fill(153, 0, 255);
+    } else if (this.neighbors == 12) {
+      fill(191, 0, 255);
+    } else if (this.neighbors == 13) {
+      fill(230, 0, 255);
+    } else if (this.neighbors == 14) {
       fill(255, 0, 255);
-    } else if (this.neighbors <= 28) {
+    } else if (this.neighbors == 15) {
+      fill(255, 26, 230);
+    } else if (this.neighbors == 16) {
+      fill(255, 64, 191);
+    } else if (this.neighbors == 17) {
+      fill(255, 102, 153);
+    } else if (this.neighbors == 18) {
+      fill(255, 140, 115);
+    } else if (this.neighbors == 19) {
+      fill(255, 178, 77);
+    } else if (this.neighbors == 20) {
+      fill(255, 217, 38);
+    } else if (this.neighbors == 21) {
       fill(255, 255, 0);
+    } else if (this.neighbors == 22) {
+      fill(255, 255, 26);
+    } else if (this.neighbors == 23) {
+      fill(255, 255, 64);
+    } else if (this.neighbors == 24) {
+      fill(255, 255, 102);
+    } else if (this.neighbors == 25) {
+      fill(255, 255, 140);
+    } else if (this.neighbors == 26) {
+      fill(255, 255, 178);
+    } else if (this.neighbors == 27) {
+      fill(255, 255, 217);
+    } else if (this.neighbors == 28) {
+      fill(255);
     } else if (this.neighbors > 28) {
       fill(255);
     }

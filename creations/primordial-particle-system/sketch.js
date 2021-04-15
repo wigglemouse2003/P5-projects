@@ -55,8 +55,8 @@ function draw() {
   background(0);
   // ellipse(width / 2, height / 2, 40, 40);
   for (var i = 0; i < particles.length; i++) {
+    particles[i].checkNeighbors();
     if (playing) {
-      particles[i].checkNeighbors();
       particles[i].update();
     }
     particles[i].show(particles[i].pos.x, particles[i].pos.y);

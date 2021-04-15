@@ -1,19 +1,7 @@
 {
   "scripts": {
-    "start": "live-server --port=8080 --host=localhost && start-0 && start-1 && start-2 && start-3 && start-4 && start-5 && start-6 && start-7 && start-8 && start-9 && start-10 && start-11",
-    "start-0": "live-server --port=0000 --host=localhost --no-browser creations/attraction-and-repulsion",
-    "start-1": "live-server --port=0001 --host=localhost --no-browser creations/counter",
-    "start-2": "live-server --port=0002 --host=localhost --no-browser creations/dnd-board",
-    "start-3": "live-server --port=0003 --host=localhost --no-browser creations/game-of-life",
-    "start-4": "live-server --port=0004 --host=localhost --no-browser creations/loading",
-    "start-5": "live-server --port=0005 --host=localhost --no-browser creations/maze-generator",
-    "start-6": "live-server --port=0006 --host=localhost --no-browser creations/number-game",
-    "start-7": "live-server --port=0007 --host=localhost --no-browser creations/phi-creature",
-    "start-8": "live-server --port=0008 --host=localhost --no-browser creations/primordial-particle-system",
-    "start-9": "live-server --port=0009 --host=localhost --no-browser creations/survival-algorithm",
-    "start-10": "live-server --port=0010 --host=localhost --no-browser creations/creature-creator",
-    "start-11": "live-server --port=0011 --host=localhost --no-browser creations/3d-room"
-  },
+    "start": "live-server --port=8080 --host=localhost"
+    },
   "dependencies": {
     "live-server": "^1.2.1",
     "node": "^13.13.0",

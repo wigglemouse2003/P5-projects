@@ -1,5 +1,6 @@
 var cols, rows;
-var w = 10;
+// var w = 10;
+var w = 40;
 var grid = [];
 var grid2 = [];
 var controller;
@@ -16,7 +17,7 @@ var remoteShowgrid;
 var fmRt = 10;
 
 function setup() {
-  createCanvas(200, 200);
+  createCanvas(240, 240);
   cols = floor(width / w);
   rows = floor(height / w);
 
@@ -65,17 +66,17 @@ function draw() {
     if (k == 0) {
       for (var j = rows - 1; j > -1; j--) {
         for (var i = cols - 1; i > -1; i--) {
-          grid2[index(i, j)].show();
-          grid2[index(i, j)].checkWalls();
-          grid2[index(i, j)].update(k);
+          // grid2[index(i, j)].show();
+          // grid2[index(i, j)].checkWalls();
+          // grid2[index(i, j)].update(k);
         }
       }
     } else if (k == 1) {
       for (var j = 0; j < rows; j++) {
         for (var i = 0; i < cols; i++) {
-          grid2[index(i, j)].checkWalls();
-          grid2[index(i, j)].update(k);
-          grid2[index(i, j)].show();
+          // grid2[index(i, j)].checkWalls();
+          // grid2[index(i, j)].update(k);
+          // grid2[index(i, j)].show();
         }
       }
     }

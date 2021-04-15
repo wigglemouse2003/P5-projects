@@ -1,8 +1,10 @@
-function Creature(dna) {
-  this.pos = createVector(random(width - 100), random(height - 100));
+function Creature(x, y) {
+  var dna = 1;
+  // this.pos = createVector(random(width - 100), random(height - 100));
+  this.pos = createVector(x, y);
   this.vel = createVector();
   this.acc = createVector();
-  this.move = p5.Vector.random2D();
+  this.move = createVector();
   this.fitness = 0;
   if (dna) {
     this.dna = dna;
@@ -23,9 +25,9 @@ function Creature(dna) {
       this.vel.add(this.acc);
       this.pos.add(this.vel);
       this.acc.mult(0);
-      this.vel.limit(4);
+      this.vel.limit((this.pos.y / this.pos.x) * 10);
 
-      this.move = p5.Vector.random2D();
+      this.move = createVector();
       this.move.add(
         targets[i].x - this.pos.x + 100 / ((d ^ 2) - 1000),
         targets[i].y - this.pos.y + 100 / ((d ^ 2) - 1000)
