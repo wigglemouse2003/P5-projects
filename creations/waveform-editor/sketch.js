@@ -15,6 +15,7 @@ var note;
 let oscC, oscDb, oscD, oscEb, oscE, oscF, oscGb, oscG, oscAb, oscA, oscBb, oscB;
 
 function setup() {
+  amp = 1;
   oscC = createP("1 = C");
   oscDb = createP("2 = Db");
   oscD = createP("3 = D");
@@ -32,18 +33,18 @@ function setup() {
   controllerWindow.mousePressed(openWin);
   let cnv = createCanvas(400, 400);
   cnv.mousePressed(playOscillator);
-  oscC = new p5.Oscillator("square");
-  oscDb = new p5.Oscillator("square");
-  oscD = new p5.Oscillator("square");
-  oscEb = new p5.Oscillator("square");
-  oscE = new p5.Oscillator("square");
-  oscF = new p5.Oscillator("square");
-  oscGb = new p5.Oscillator("square");
-  oscG = new p5.Oscillator("square");
-  oscAb = new p5.Oscillator("square");
-  oscA = new p5.Oscillator("square");
-  oscBb = new p5.Oscillator("square");
-  oscB = new p5.Oscillator("square");
+  oscC = new p5.Oscillator("sine");
+  oscDb = new p5.Oscillator("sine");
+  oscD = new p5.Oscillator("sine");
+  oscEb = new p5.Oscillator("sine");
+  oscE = new p5.Oscillator("sine");
+  oscF = new p5.Oscillator("sine");
+  oscGb = new p5.Oscillator("sine");
+  oscG = new p5.Oscillator("sine");
+  oscAb = new p5.Oscillator("sine");
+  oscA = new p5.Oscillator("sine");
+  oscBb = new p5.Oscillator("sine");
+  oscB = new p5.Oscillator("sine");
   C *= 4;
   Db *= 4;
   D *= 4;
@@ -73,7 +74,7 @@ function setup() {
 function draw() {
   background(220);
   freq = constrain(map(mouseX, 0, width, 60, 500), -500, 500);
-  amp = constrain(map(mouseY, height, 0, 0, 1), 0, 1);
+  // amp = constrain(map(mouseY, height, 0, 0, 1), 0, 1);
 
   text("tap to play", 20, 20);
   text("freq: " + freq, 20, 40);
@@ -91,6 +92,17 @@ function draw() {
   keyIsDown(48) ? oscA.amp(amp, 0.1) : oscA.amp(0, 0.1);
   keyIsDown(189) ? oscBb.amp(amp, 0.1) : oscBb.amp(0, 0.1);
   keyIsDown(187) ? oscB.amp(amp, 0.1) : oscB.amp(0, 0.1);
+  key == "ArrowUp" && note == "vol" && amp < 1 && keyIsPressed === true
+    ? (amp += 0.1)
+    : key == "ArrowDown" && note == "vol" && amp >= 0 && keyIsPressed === true
+    ? (amp -= 0.1)
+    : null;
+  if (amp < 0) {
+    amp = 0;
+  }
+  if (amp > 1) {
+    amp = 1;
+  }
 }
 var num = 1;
 function keyPressed() {
@@ -166,13 +178,66 @@ function keyPressed() {
     : key == "ArrowDown" && note == "B"
     ? ((B /= 2), oscB.freq(B))
     : null;
+  key == "a" ? (note = "all") : null;
+  key == "ArrowUp" && note == "all"
+    ? ((B *= 2),
+      oscB.freq(B),
+      (Bb *= 2),
+      oscBb.freq(Bb),
+      (A *= 2),
+      oscA.freq(A),
+      (Ab *= 2),
+      oscAb.freq(Ab),
+      (G *= 2),
+      oscG.freq(G),
+      (Gb *= 2),
+      oscGb.freq(Gb),
+      (F *= 2),
+      oscF.freq(F),
+      (E *= 2),
+      oscE.freq(E),
+      (Eb *= 2),
+      oscEb.freq(Eb),
+      (D *= 2),
+      oscD.freq(D),
+      (Db *= 2),
+      oscDb.freq(Db),
+      (C *= 2),
+      oscC.freq(C))
+    : key == "ArrowDown" && note == "all"
+    ? ((B /= 2),
+      oscB.freq(B),
+      (Bb /= 2),
+      oscBb.freq(Bb),
+      (A /= 2),
+      oscA.freq(A),
+      (Ab /= 2),
+      oscAb.freq(Ab),
+      (G /= 2),
+      oscG.freq(G),
+      (Gb /= 2),
+      oscGb.freq(Gb),
+      (F /= 2),
+      oscF.freq(F),
+      (E /= 2),
+      oscE.freq(E),
+      (Eb /= 2),
+      oscEb.freq(Eb),
+      (D /= 2),
+      oscD.freq(D),
+      (Db /= 2),
+      oscDb.freq(Db),
+      (C /= 2),
+      oscC.freq(C))
+    : null;
+  key == "v" ? (note = "vol") : null;
 }
 
 function openWin() {
   controller = window.open(
     "controller/controller.html",
     "",
-    "width=150, height=175, resizable=no"
+    "width=1500, height=200, resizable=no"
   );
   resizeWin();
 }
