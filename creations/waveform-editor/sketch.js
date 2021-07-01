@@ -92,17 +92,6 @@ function draw() {
   keyIsDown(48) ? oscA.amp(amp, 0.1) : oscA.amp(0, 0.1);
   keyIsDown(189) ? oscBb.amp(amp, 0.1) : oscBb.amp(0, 0.1);
   keyIsDown(187) ? oscB.amp(amp, 0.1) : oscB.amp(0, 0.1);
-  key == "ArrowUp" && note == "vol" && amp < 1 && keyIsPressed === true
-    ? (amp += 0.1)
-    : key == "ArrowDown" && note == "vol" && amp >= 0 && keyIsPressed === true
-    ? (amp -= 0.1)
-    : null;
-  if (amp < 0) {
-    amp = 0;
-  }
-  if (amp > 1) {
-    amp = 1;
-  }
 }
 var num = 1;
 function keyPressed() {
@@ -231,6 +220,18 @@ function keyPressed() {
       oscC.freq(C))
     : null;
   key == "v" ? (note = "vol") : null;
+  var amp2;
+  key == "ArrowUp" && note == "vol" && amp < 1 && keyIsPressed === true
+    ? ((amp += 0.1), (amp2 = amp * 10), (amp2 = round(amp2)), (amp = amp2 / 10))
+    : key == "ArrowDown" && note == "vol" && amp >= 0 && keyIsPressed === true
+    ? ((amp -= 0.1), (amp2 = amp * 10), (amp2 = round(amp2)), (amp = amp2 / 10))
+    : null;
+  if (amp < 0) {
+    amp = 0;
+  }
+  if (amp > 1) {
+    amp = 1;
+  }
 }
 
 function openWin() {
