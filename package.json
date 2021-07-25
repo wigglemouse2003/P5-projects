@@ -4,7 +4,7 @@
     },
   "dependencies": {
     "live-server": "^1.2.1",
-    "node": "^13.13.0",
+    "node": "^16.1.0",
     "open": "^7.0.3",
     "uuid": "^7.0.3"
   },

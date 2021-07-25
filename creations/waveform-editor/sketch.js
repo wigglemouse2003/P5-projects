@@ -32,18 +32,18 @@ function setup() {
   controllerWindow.mousePressed(openWin);
   let cnv = createCanvas(400, 400);
   cnv.mousePressed(playOscillator);
-  oscC = new p5.Oscillator("square");
-  oscDb = new p5.Oscillator("square");
-  oscD = new p5.Oscillator("square");
-  oscEb = new p5.Oscillator("square");
-  oscE = new p5.Oscillator("square");
-  oscF = new p5.Oscillator("square");
-  oscGb = new p5.Oscillator("square");
-  oscG = new p5.Oscillator("square");
-  oscAb = new p5.Oscillator("square");
-  oscA = new p5.Oscillator("square");
-  oscBb = new p5.Oscillator("square");
-  oscB = new p5.Oscillator("square");
+  oscC = new p5.Oscillator("sawtooth");
+  oscDb = new p5.Oscillator("sawtooth");
+  oscD = new p5.Oscillator("sawtooth");
+  oscEb = new p5.Oscillator("sawtooth");
+  oscE = new p5.Oscillator("sawtooth");
+  oscF = new p5.Oscillator("sawtooth");
+  oscGb = new p5.Oscillator("sawtooth");
+  oscG = new p5.Oscillator("sawtooth");
+  oscAb = new p5.Oscillator("sawtooth");
+  oscA = new p5.Oscillator("sawtooth");
+  oscBb = new p5.Oscillator("sawtooth");
+  oscB = new p5.Oscillator("sawtooth");
   C *= 4;
   Db *= 4;
   D *= 4;
@@ -166,13 +166,65 @@ function keyPressed() {
     : key == "ArrowDown" && note == "B"
     ? ((B /= 2), oscB.freq(B))
     : null;
+  key == "a" ? (note = "all") : null;
+  key == "ArrowUp" && note == "all"
+    ? ((B *= 2),
+      oscB.freq(B),
+      (Bb *= 2),
+      oscBb.freq(Bb),
+      (A *= 2),
+      oscA.freq(A),
+      (Ab *= 2),
+      oscAb.freq(Ab),
+      (G *= 2),
+      oscG.freq(G),
+      (Gb *= 2),
+      oscGb.freq(Gb),
+      (F *= 2),
+      oscF.freq(F),
+      (E *= 2),
+      oscE.freq(E),
+      (Eb *= 2),
+      oscEb.freq(Eb),
+      (D *= 2),
+      oscD.freq(D),
+      (Db *= 2),
+      oscDb.freq(Db),
+      (C *= 2),
+      oscC.freq(C))
+    : key == "ArrowDown" && note == "all"
+    ? ((B /= 2),
+      oscB.freq(B),
+      (Bb /= 2),
+      oscBb.freq(Bb),
+      (A /= 2),
+      oscA.freq(A),
+      (Ab /= 2),
+      oscAb.freq(Ab),
+      (G /= 2),
+      oscG.freq(G),
+      (Gb /= 2),
+      oscGb.freq(Gb),
+      (F /= 2),
+      oscF.freq(F),
+      (E /= 2),
+      oscE.freq(E),
+      (Eb /= 2),
+      oscEb.freq(Eb),
+      (D /= 2),
+      oscD.freq(D),
+      (Db /= 2),
+      oscDb.freq(Db),
+      (C /= 2),
+      oscC.freq(C))
+    : null;
 }
 
 function openWin() {
   controller = window.open(
     "controller/controller.html",
     "",
-    "width=150, height=175, resizable=no"
+    "width=1500, height=200, resizable=no"
   );
   resizeWin();
 }
