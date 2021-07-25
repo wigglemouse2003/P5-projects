@@ -15,6 +15,7 @@ var note;
 let oscC, oscDb, oscD, oscEb, oscE, oscF, oscGb, oscG, oscAb, oscA, oscBb, oscB;
 
 function setup() {
+  amp = 1;
   oscC = createP("1 = C");
   oscDb = createP("2 = Db");
   oscD = createP("3 = D");
@@ -32,18 +33,18 @@ function setup() {
   controllerWindow.mousePressed(openWin);
   let cnv = createCanvas(400, 400);
   cnv.mousePressed(playOscillator);
-  oscC = new p5.Oscillator("sawtooth");
-  oscDb = new p5.Oscillator("sawtooth");
-  oscD = new p5.Oscillator("sawtooth");
-  oscEb = new p5.Oscillator("sawtooth");
-  oscE = new p5.Oscillator("sawtooth");
-  oscF = new p5.Oscillator("sawtooth");
-  oscGb = new p5.Oscillator("sawtooth");
-  oscG = new p5.Oscillator("sawtooth");
-  oscAb = new p5.Oscillator("sawtooth");
-  oscA = new p5.Oscillator("sawtooth");
-  oscBb = new p5.Oscillator("sawtooth");
-  oscB = new p5.Oscillator("sawtooth");
+  oscC = new p5.Oscillator("sine");
+  oscDb = new p5.Oscillator("sine");
+  oscD = new p5.Oscillator("sine");
+  oscEb = new p5.Oscillator("sine");
+  oscE = new p5.Oscillator("sine");
+  oscF = new p5.Oscillator("sine");
+  oscGb = new p5.Oscillator("sine");
+  oscG = new p5.Oscillator("sine");
+  oscAb = new p5.Oscillator("sine");
+  oscA = new p5.Oscillator("sine");
+  oscBb = new p5.Oscillator("sine");
+  oscB = new p5.Oscillator("sine");
   C *= 4;
   Db *= 4;
   D *= 4;
@@ -73,7 +74,7 @@ function setup() {
 function draw() {
   background(220);
   freq = constrain(map(mouseX, 0, width, 60, 500), -500, 500);
-  amp = constrain(map(mouseY, height, 0, 0, 1), 0, 1);
+  // amp = constrain(map(mouseY, height, 0, 0, 1), 0, 1);
 
   text("tap to play", 20, 20);
   text("freq: " + freq, 20, 40);
@@ -218,6 +219,19 @@ function keyPressed() {
       (C /= 2),
       oscC.freq(C))
     : null;
+  key == "v" ? (note = "vol") : null;
+  var amp2;
+  key == "ArrowUp" && note == "vol" && amp < 1 && keyIsPressed === true
+    ? ((amp += 0.1), (amp2 = amp * 10), (amp2 = round(amp2)), (amp = amp2 / 10))
+    : key == "ArrowDown" && note == "vol" && amp >= 0 && keyIsPressed === true
+    ? ((amp -= 0.1), (amp2 = amp * 10), (amp2 = round(amp2)), (amp = amp2 / 10))
+    : null;
+  if (amp < 0) {
+    amp = 0;
+  }
+  if (amp > 1) {
+    amp = 1;
+  }
 }
 
 function openWin() {
