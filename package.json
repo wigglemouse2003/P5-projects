@@ -1,11 +1,11 @@
 {
   "scripts": {
     "start": "live-server --port=8080 --host=localhost"
-    },
+  },
   "dependencies": {
     "live-server": "^1.2.1",
     "node": "^16.1.0",
-    "open": "^7.0.3",
+    "open": "^7.4.2",
     "uuid": "^7.0.3"
   },
   "name": "phillip-woolf-p5-creations",
