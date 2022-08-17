@@ -16,6 +16,7 @@ var storedPos = [];
 var grav = true;
 var jump = false;
 var number = 5;
+devMode = 0;
 
 function preload() {
   img[0] = loadImage("assets/red-bricks-wall-photo-taken-made-101731432.jpg");
@@ -41,9 +42,9 @@ function draw() {
   let locX = -movedX * 0.001;
   let locY = movedY * 0.001;
   background(51);
-  ambientLight(40, 40, 40);
   // pointLight(200, 200, 200, 375, -250, 125);
   // pointLight(150, 150, 150, 125, 0, -375);
+  ambientLight(40, 40, 40);
   spotLight(
     200,
     200,
@@ -58,15 +59,7 @@ function draw() {
     PI,
     25
   );
-  if (grav && !jump) {
-    camera.setPosition(
-      camera.eyeX,
-      camera.eyeY + (frameCount * frameCount) / 1000,
-      camera.eyeZ
-    );
-  } else {
-    grav = true;
-  }
+
   requestPointerLock();
 
   noStroke();
@@ -80,8 +73,10 @@ function draw() {
   rooms[3].walls[2][0] = false;
   rooms[3].walls[2][1] = false;
   rooms[4].walls[1][0] = false;
+  rooms[4].walls[2][1] = false;
   rooms[5].walls[0][1] = false;
   rooms[5].walls[1][3] = false;
+  rooms[6].walls[1][1] = false;
 
   level.show();
   for (let i = 0; i < rooms.length; i++) {
@@ -113,15 +108,34 @@ function draw() {
     camera.move(10, 0, 0);
   }
   // }
-  level.collide();
-  if (jump) {
-    if (number >= 0) {
-      console.log("yes");
-      camera.setPosition(camera.eyeX, camera.eyeY - number, camera.eyeZ);
-      frameCount = 0;
-      number -= 0.1;
-      // number = number - 0.0625;
-      grav = false;
+  if (keyIsDown(17) && keyIsDown(18) && keyIsDown(68)) {
+    if (devMode == 0) {
+      devMode = 1;
+    } else {
+      devMode = 0;
+    }
+  }
+
+  if (devMode == 0) {
+    if (grav && !jump) {
+      camera.setPosition(
+        camera.eyeX,
+        camera.eyeY + (frameCount * frameCount) / 1000,
+        camera.eyeZ
+      );
+    } else {
+      grav = true;
+    }
+    level.collide();
+    if (jump) {
+      if (number >= 0) {
+        console.log("yes");
+        camera.setPosition(camera.eyeX, camera.eyeY - number, camera.eyeZ);
+        frameCount = 0;
+        number -= 0.1;
+        // number = number - 0.0625;
+        grav = false;
+      }
     }
   }
 
@@ -135,6 +149,7 @@ function keyPressed() {
   moving = true;
   if (key == "r") {
     setup();
+    frameCount = 0;
   }
   if (keyIsDown(32) && !grav) {
     jump = true;
