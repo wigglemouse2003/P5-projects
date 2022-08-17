@@ -19,6 +19,7 @@ function Level() {
     rooms[3].show(1, 2, 1, createVector(250, 250, -752), clr);
     rooms[4].show(3, 1, 2, createVector(501, 250, -751), clr);
     rooms[5].show(4, 2, 2, createVector(1001, 250, 0), clr);
+    rooms[6].show(3, 1, 3, createVector(1002, 250, -751), clr);
   };
   this.collide = function () {
     rooms[0].makeCollisions(2, 3, 4, createVector(0, 0, 0));
@@ -27,5 +28,6 @@ function Level() {
     rooms[3].makeCollisions(1, 2, 1, createVector(250, 250, -752));
     rooms[4].makeCollisions(3, 1, 2, createVector(501, 250, -751));
     rooms[5].makeCollisions(4, 2, 2, createVector(1001, 250, 0));
+    rooms[6].makeCollisions(3, 1, 3, createVector(1002, 250, -751));
   };
 }

@@ -3,15 +3,17 @@
     "start": "live-server --port=8080 --host=localhost"
   },
   "dependencies": {
-    "live-server": "^1.2.1",
-    "node": "^16.1.0",
+    "chokidar": "^3.5.3",
+    "expand-brackets": "^4.0.0",
+    "glob-parent": "^5.1.2",
+    "live-server": "^1.1.0",
+    "node": "^16.13.2",
     "open": "^7.4.2",
     "uuid": "^7.0.3"
   },
   "name": "phillip-woolf-p5-creations",
   "version": "1.0.0",
   "main": "app.js",
-  "devDependencies": {},
   "author": "Phillip Woolf",
   "license": "ISC",
   "description": "Phillip Woolf's p5.js creations",
